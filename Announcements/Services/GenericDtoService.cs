@@ -3,15 +3,17 @@ using AutoMapper;
 
 namespace Announcements.Services;
 
-public interface IDtoService<out TDto> where TDto : class
+public interface IGenericDtoService<TDto> where TDto : class
 {
     #region Public members
+    bool Delete(Guid id);
+    bool Edit(Guid id, TDto newValues);
     IReadOnlyList<TDto> GetAll();
     TDto? GetById(Guid id);
     #endregion
 }
 
-public abstract class DtoService<TEntity, TDto, TRepo> : IDtoService<TDto>
+public abstract class GenericDtoService<TEntity, TDto, TRepo> : IGenericDtoService<TDto>
     where TRepo : IGenericRepository<TEntity> where TEntity : class where TDto : class
 {
     #region Fields
@@ -20,7 +22,7 @@ public abstract class DtoService<TEntity, TDto, TRepo> : IDtoService<TDto>
     #endregion
 
     #region Constructors
-    protected DtoService(TRepo repository, IMapper mapper)
+    protected GenericDtoService(TRepo repository, IMapper mapper)
     {
         Repository = repository;
         Mapper = mapper;
@@ -28,6 +30,20 @@ public abstract class DtoService<TEntity, TDto, TRepo> : IDtoService<TDto>
     #endregion
 
     #region Interface Implementations
+    public bool Delete(Guid id)
+    {
+        return Repository.Delete(id);
+    }
+
+    public bool Edit(Guid id, TDto newValues)
+    {
+        var entity = Repository.GetById(id);
+        if (entity == null)
+            return false;
+        Mapper.Map(newValues, entity);
+        return true;
+    }
+
     public IReadOnlyList<TDto> GetAll()
     {
         return Repository.GetAll()

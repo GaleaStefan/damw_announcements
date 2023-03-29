@@ -5,11 +5,11 @@ using AutoMapper;
 
 namespace Announcements.Services;
 
-public interface IAnnouncementService : IDtoService<AnnouncementDto>
+public interface IAnnouncementService : IGenericDtoService<AnnouncementDto>
 {
 }
 
-public class AnnouncementService : DtoService<Announcement, AnnouncementDto, IAnnouncementRepository>,
+public class AnnouncementService : GenericDtoService<Announcement, AnnouncementDto, IAnnouncementRepository>,
     IAnnouncementService
 {
     #region Constructors
