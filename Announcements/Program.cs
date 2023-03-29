@@ -1,4 +1,5 @@
 using Announcements.Repositories;
+using Announcements.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IAnnouncementRepository, AnnouncementRepository>();
 
 // services
+builder.Services.AddTransient<IAnnouncementService, AnnouncementService>();
 
 var app = builder.Build();
 
