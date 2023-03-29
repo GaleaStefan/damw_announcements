@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Announcements.Models;
+namespace Announcements.Entities;
 
-public class Category
+public class Tag
 {
     #region Properties and Indexers
     public Guid Id { get; set; }

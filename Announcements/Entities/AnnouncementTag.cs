@@ -1,4 +1,4 @@
-﻿namespace Announcements.Models;
+﻿namespace Announcements.Entities;
 
 public class AnnouncementTag
 {

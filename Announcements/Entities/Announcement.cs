@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Announcements.Models;
+namespace Announcements.Entities;
 
 public class Announcement
 {
