@@ -13,6 +13,9 @@ public class Announcement
     [Required]
     public Category Category { get; set; }
 
+    [Required]
+    public string Content { get; set; }
+
     public Guid Id { get; set; }
 
     [Required]
